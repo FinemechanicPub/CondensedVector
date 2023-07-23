@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MicrosoftTests", "MicrosoftTests\MicrosoftTests.vcxproj", "{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CondensedVector", "CondensedVector\CondensedVector.vcxitems", "{DD26B6A9-91FB-43F9-B555-98B29A7458C9}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CondensedVector\CondensedVector.vcxitems*{48c96568-81cf-4c34-b0e9-d8c3a6e1b57c}*SharedItemsImports = 4
+		CondensedVector\CondensedVector.vcxitems*{dd26b6a9-91fb-43f9-b555-98b29a7458c9}*SharedItemsImports = 9
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Debug|x64.ActiveCfg = Debug|x64
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Debug|x64.Build.0 = Debug|x64
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Debug|x86.ActiveCfg = Debug|Win32
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Debug|x86.Build.0 = Debug|Win32
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Release|x64.ActiveCfg = Release|x64
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Release|x64.Build.0 = Release|x64
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Release|x86.ActiveCfg = Release|Win32
+		{48C96568-81CF-4C34-B0E9-D8C3A6E1B57C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3076A4A6-0CCE-493C-84B0-A250B7D13B9D}
+	EndGlobalSection
+EndGlobal
