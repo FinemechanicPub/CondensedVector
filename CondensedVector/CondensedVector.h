@@ -25,7 +25,7 @@ private:
 	};
 
 	I from_sizet(size_t arg) {
-		assert(std::numeric_limits<I>::max() >= arg);
+		assert(static_cast<size_t>(std::numeric_limits<I>::max()) >= arg);
 		return static_cast<I>(arg); 
 	}
 
@@ -60,11 +60,11 @@ public:
 	void Delete(I first, I count);
 	size_t Count() { return elements.size(); }
 	void Reserve(size_t count) { elements.reserve(count); }
-	I MaxIndex() { return elements.back().idx; }
+	std::optional<I> MaxIndex() { return elements.empty() ? std::nullopt : std::make_optional(elements.back().idx); }
 	size_t ExpandedSize() { if (elements.empty()) { return 0; } else { return to_sizet(MaxIndex()) + 1; } }		
 	void MoveToVector(std::vector<T>& v);
-	std::vector<T> ToVector();
-	
+	std::vector<T> ToVector(I length = I(), I origin = I());
+
 	auto begin() { return elements.begin(); }
 	auto end() { return elements.end(); }
 	auto begin() const { return elements.begin(); }
@@ -209,15 +209,18 @@ void CondensedVector<T, I>::MoveToVector(std::vector<T>& v)
 }
 
 template<class T, class I>
-std::vector<T> CondensedVector<T, I>::ToVector()
+std::vector<T> CondensedVector<T, I>::ToVector(I length, I origin)
 {
 	std::vector<T> result;
-	if (elements.size()) result.reserve(ExpandedSize());
+	result.reserve(std::max(length, MaxIndex().value_or(I())));
 	for (size_t i = 0; i < elements.size(); ++i) {
-		while (result.size() < elements[i].idx) {
+		while (result.size() < to_sizet(elements[i].idx - origin)) {
 			result.emplace_back();
 		}		
 		result.push_back(elements[i].value);
+	}
+	while (result.size() < to_sizet(length)) {
+		result.emplace_back();
 	}
 	return result;
 }
