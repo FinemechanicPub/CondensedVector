@@ -54,7 +54,7 @@ public:
 	T& operator[](I i);	
 	T& At(I i);
 	T* GetPointer(I i);
-	T* Put(I i, T v);
+	T* Put(I i, T v=T());
 	bool Contains(I i) { return GetPointer(i); }
 	void Insert(I before, I count);
 	void Delete(I first, I count);
@@ -106,7 +106,7 @@ inline T& CondensedVector<T, I>::operator[](I i)
 		return *value;
 	}
 	else {
-		return *Put(i, T());
+		return *Put(i);
 	}
 
 }
