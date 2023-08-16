@@ -61,8 +61,15 @@ namespace MicrosoftTests
 					Assert::AreEqual(v[i], cv.At(i), message_for_testcase(L"Wrong element at position " + i, v).c_str());
 				}
 				auto nv = cv.ToVector(v.size());
+				Assert::AreEqual(v.size(), nv.size(), message_for_testcase(L"ToVector produced vector of wrong length", v).c_str());
 				for (size_t i = 0; i < v.size(); ++i) {
 					Assert::AreEqual(v[i], nv[i], message_for_testcase(L"Wrong ToVector result", v).c_str());
+				}
+				nv.clear();
+				cv.MoveToVector(nv, v.size());
+				Assert::AreEqual(v.size(), nv.size(), message_for_testcase(L"MoveToVector produced vector of wrong length", v).c_str());
+				for (size_t i = 0; i < v.size(); ++i) {
+					Assert::AreEqual(v[i], nv[i], message_for_testcase(L"Wrong MoveToVector result", v).c_str());
 				}
 			}
 
