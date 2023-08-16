@@ -60,8 +60,7 @@ public:
 	void Delete(I first, I count);
 	size_t Count() { return elements.size(); }
 	void Reserve(size_t count) { elements.reserve(count); }
-	std::optional<I> MaxIndex() { return elements.empty() ? std::nullopt : std::make_optional(elements.back().idx); }
-	size_t ExpandedSize() { if (elements.empty()) { return 0; } else { return to_sizet(MaxIndex()) + 1; } }		
+	std::optional<I> MaxIndex() { return elements.empty() ? std::nullopt : std::make_optional(elements.back().idx); }	
 	void MoveToVector(std::vector<T>& v, I length = I(), I origin = I());
 	std::vector<T> ToVector(I length = I(), I origin = I());
 
