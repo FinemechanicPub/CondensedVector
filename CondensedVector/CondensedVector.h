@@ -10,6 +10,12 @@
 #include <cassert>
 #include <limits>
 
+
+template<class T>
+bool non_zero(const T& value) {
+	return value != static_cast<T>(0);
+}
+
 template<class T, class I = int>
 class CondensedVector {
 public:
