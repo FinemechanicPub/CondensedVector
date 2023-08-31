@@ -77,9 +77,12 @@ public:
 	auto index_equal_range(I index) { return std::equal_range(elements.begin(), elements.end(), index, ElementComp{}); }
 };
 
-
-
-
+/// <summary>
+/// Constructs from a std::vector
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="v">std::vector to construct from</param>
 template<class T, class I>
 CondensedVector<T, I>::CondensedVector(std::vector<T> v)
 {
@@ -89,6 +92,13 @@ CondensedVector<T, I>::CondensedVector(std::vector<T> v)
 	}
 }
 
+/// <summary>
+/// Constructs from a std::vector, excluding empty elements
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="v">std::vector to construct from</param>
+/// <param name="is_not_empty">function that tells that a vector element is a non-empty value</param>
 template<class T, class I>
 CondensedVector<T, I>::CondensedVector(std::vector<T> v, bool(*is_not_empty)(const T&))
 {
@@ -99,6 +109,13 @@ CondensedVector<T, I>::CondensedVector(std::vector<T> v, bool(*is_not_empty)(con
 	}
 }
 
+/// <summary>
+/// Access to element by index. Creates an element with default constructed value if it doesn't exists.
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="i">index</param>
+/// <returns>reference to the element</returns>
 template<class T, class I>
 inline T& CondensedVector<T, I>::operator[](I i)
 {
@@ -111,6 +128,13 @@ inline T& CondensedVector<T, I>::operator[](I i)
 
 }
 
+/// <summary>
+/// Access to the non-empty element by index. Throws an exception if the element doesn't exists.
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="i">index</param>
+/// <returns>reference to the element</returns>
 template<class T, class I>
 T& CondensedVector<T, I>::At(I i)
 {		
@@ -123,6 +147,13 @@ T& CondensedVector<T, I>::At(I i)
 	}
 }
 
+/// <summary>
+/// Get pointer to the element by index
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="i">index</param>
+/// <returns>pointer to the requested element</returns>
 template<class T, class I>
 T* CondensedVector<T, I>::GetPointer(I i)
 {	
@@ -135,6 +166,14 @@ T* CondensedVector<T, I>::GetPointer(I i)
 	}	
 }
 
+/// <summary>
+/// Put value at the specified position.
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="i">position</param>
+/// <param name="v">value</param>
+/// <returns>pointer to the inserted element</returns>
 template<class T, class I>
 T* CondensedVector<T, I>::Put(I i, T v)
 {	
@@ -164,15 +203,29 @@ T* CondensedVector<T, I>::Put(I i, T v)
 	}
 }
 
+/// <summary>
+/// Insert empty elements
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="before">insertion point</param>
+/// <param name="count">number of elements to insert</param>
 template<class T, class I>
 inline void CondensedVector<T, I>::Insert(I before, I count)
 {	
 	const auto it_before = index_lower_bound(before);
-	for (auto it = it_before; it != elements.end()/*idx.end()*/; ++it) {		
+	for (auto it = it_before; it != elements.end(); ++it) {		
 		(*it).idx += count;
 	}
 }
 
+/// <summary>
+/// Remove consequent elements
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="first">index of the first element to remove</param>
+/// <param name="count">number of elements to remove</param>
 template<class T, class I>
 inline void CondensedVector<T, I>::Delete(I first, I count)
 {
@@ -187,7 +240,14 @@ inline void CondensedVector<T, I>::Delete(I first, I count)
 	elements.resize(elements.size() - (i_last - i_first));
 }
 
-
+/// <summary>
+/// Move contents to the std::vector
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="v">vector to which contents is moved</param>
+/// <param name="length">length of the vector to construct</param>
+/// <param name="origin">index of the first element</param>
 template<class T, class I>
 void CondensedVector<T, I>::MoveToVector(std::vector<T>& v, I length, I origin)
 {
@@ -204,6 +264,14 @@ void CondensedVector<T, I>::MoveToVector(std::vector<T>& v, I length, I origin)
 	}
 }
 
+/// <summary>
+/// Convert to std::vector
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <typeparam name="I">index type</typeparam>
+/// <param name="length">length of the vector to construct</param>
+/// <param name="origin">index of the first element</param>
+/// <returns>std:vector, constructed from the condensed vector</returns>
 template<class T, class I>
 std::vector<T> CondensedVector<T, I>::ToVector(I length, I origin)
 {
