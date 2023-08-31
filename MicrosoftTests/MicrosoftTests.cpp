@@ -153,7 +153,7 @@ namespace MicrosoftTests
 				CondensedVector<int> cv;
 				for (size_t i = 0; i < v.size(); ++i) {
 					if (is_non_empty(v[i])) cv.Put(i, v[i]);
-				}
+				}				
 				Assert::IsTrue(v == cv.ToVector(v.size()), message_for_testcase(std::wstring(L"Error when constructing with Put."), v, v, cv.ToVector(v.size())).c_str());
 			}
 		}
