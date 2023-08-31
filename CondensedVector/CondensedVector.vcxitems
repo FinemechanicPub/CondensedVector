@@ -8,6 +8,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard> 
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
