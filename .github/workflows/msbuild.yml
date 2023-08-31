@@ -36,10 +36,10 @@ jobs:
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Run tests
-        uses: microsoft-approved-actions/vstest@master
-        with:
-          testAssembly: MicrosoftTests.dll
-          searchFolder: ./${{env.BUILD_CONFIGURATION}}/
-          runInParallel: true
-          ifNoFilesFound: error
+      uses: microsoft-approved-actions/vstest@master
+      with:
+        testAssembly: MicrosoftTests.dll
+        searchFolder: ./${{env.BUILD_CONFIGURATION}}/
+        runInParallel: true
+        ifNoFilesFound: error
 
