@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MicrosoftTests", "Microsoft
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CondensedVector", "CondensedVector\CondensedVector.vcxitems", "{DD26B6A9-91FB-43F9-B555-98B29A7458C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF104C31-3867-4101-86DD-B55B6C6D5AC2}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\msbuild.yml = .github\workflows\msbuild.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CondensedVector\CondensedVector.vcxitems*{48c96568-81cf-4c34-b0e9-d8c3a6e1b57c}*SharedItemsImports = 4
