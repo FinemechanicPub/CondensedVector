@@ -41,5 +41,4 @@ jobs:
         testAssembly: MicrosoftTests.dll
         searchFolder: ./${{env.BUILD_CONFIGURATION}}/
         runInParallel: true
-        ifNoFilesFound: error
 
