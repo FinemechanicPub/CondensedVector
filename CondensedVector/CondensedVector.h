@@ -114,7 +114,6 @@ inline T& CondensedVector<T, I>::operator[](I i)
 template<class T, class I>
 T& CondensedVector<T, I>::At(I i)
 {		
-	//auto [it1, it2] = std::equal_range(elements.begin(), elements.end(), i, ElementComp{});
 	auto [it1, it2] = index_equal_range(i);
 	if (it1 != it2) { // подходящий элемент найден		
 		return elements[std::distance(elements.begin(), it1)].value;
@@ -127,7 +126,6 @@ T& CondensedVector<T, I>::At(I i)
 template<class T, class I>
 T* CondensedVector<T, I>::GetPointer(I i)
 {	
-	//auto [it1, it2] = std::equal_range(elements.begin(), elements.end(), i, ElementComp{});
 	auto [it1, it2] = index_equal_range(i);
 	if (it1 != it2) { // подходящий элемент найден		
 		return &elements[std::distance(elements.begin(), it1)].value;
@@ -140,7 +138,6 @@ T* CondensedVector<T, I>::GetPointer(I i)
 template<class T, class I>
 T* CondensedVector<T, I>::Put(I i, T v)
 {	
-	//auto [it1, it2] = std::equal_range(elements.begin(), elements.end(), i, ElementComp{});
 	auto [it1, it2] = index_equal_range(i);
 	if (it1 != it2) { // подходящий элемент найден
 		size_t i_element = std::distance(elements.begin(), it1);
@@ -170,7 +167,6 @@ T* CondensedVector<T, I>::Put(I i, T v)
 template<class T, class I>
 inline void CondensedVector<T, I>::Insert(I before, I count)
 {	
-	//const auto it_before = std::lower_bound(elements.begin(), elements.end(), before, ElementComp{});
 	const auto it_before = index_lower_bound(before);
 	for (auto it = it_before; it != elements.end()/*idx.end()*/; ++it) {		
 		(*it).idx += count;
@@ -182,8 +178,6 @@ inline void CondensedVector<T, I>::Delete(I first, I count)
 {
 	const auto it_first = index_lower_bound(first);
 	const auto it_last = index_upper_bound(first + count - 1);
-	//const auto it_first = std::lower_bound(elements.begin(), elements.end(), first, ElementComp{});
-	//const auto it_last = std::upper_bound(elements.begin(), elements.end(), first + count - 1, ElementComp{});
 	size_t i_first = it_first - elements.begin();
 	size_t i_last = it_last - elements.begin();
 	for (auto it = it_last; it != elements.end(); ++it) {
