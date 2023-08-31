@@ -38,7 +38,7 @@ jobs:
     - name: Run tests
       uses: microsoft/vstest-action@main
       with:
-        testAssembly: MicrosoftTests.dll
+        testAssembly: '**\\MicrosoftTests.dll'
         searchFolder: ./${{env.BUILD_CONFIGURATION}}/
         runInParallel: true
 
