@@ -10,7 +10,12 @@
 #include <cassert>
 #include <limits>
 
-
+/// <summary>
+/// Test if the value is zero. Integer 0 must be convertible ot the type T.
+/// </summary>
+/// <typeparam name="T">value type</typeparam>
+/// <param name="value">value</param>
+/// <returns>true if the value is zero</returns>
 template<class T>
 bool non_zero(const T& value) {
 	return value != static_cast<T>(0);
