@@ -36,7 +36,7 @@ jobs:
       run: msbuild /m /p:OutDir=Tests /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Add vstest.console.exe to PATH
-      uses: darenm/Setup-VSTest
+      uses: darenm/Setup-VSTest@v1.2
     
     - name: Run tests
       run: vstest.console.exe /Platform:x64 ./MicrosoftTests/Tests/MicrosoftTests.dll
