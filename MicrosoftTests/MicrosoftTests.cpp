@@ -3,6 +3,7 @@
 
 #include "CondensedVector.h"
 
+#include <numeric>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -147,6 +148,26 @@ namespace MicrosoftTests
 					if (non_zero(v[i])) cv.Put(i, v[i]);
 				}				
 				Assert::IsTrue(v == cv.ToVector(v.size()), message_for_testcase(std::wstring(L"Error when constructing with Put."), v, v, cv.ToVector(v.size())).c_str());
+			}
+		}
+
+		TEST_METHOD(Iterators) {
+			std::vector<std::vector<int>> testcases = {
+				{0, 0, 0, 0, 0, 0, 0},
+				{0, 5, 5, 5, 5, 5, 5},
+				{5, 5, 5, 5, 5, 5, 0},
+				{5, 5, 5, 5, 5, 5, 5},
+				{1, 3, 5, 7, 9, 11, 13},
+				{0, 1, 3, 5, 7, 9, 11, 13},
+				{1, 0, 3, 5, 7, 9, 11, 13},
+				{1, 3, 5, 7, 9, 11, 0, 13},
+				{1, 3, 5, 7, 9, 11, 13, 0},
+				{1, 3, 5, 0, 0, 7, 9, 11, 13},
+				{0, 0, 6, 8, 0, 3, 5, 0}
+			};
+			for (const auto& v : testcases) {
+				CondensedVector<int> cv(v, non_zero);
+				Assert::AreEqual(std::accumulate(v.begin(), v.end(), 0), std::accumulate(cv.begin(), cv.end(), 0), message_for_testcase(std::wstring(L"Error using std::accumulate."), v, v, cv.ToVector(v.size())).c_str());				
 			}
 		}
 	};
