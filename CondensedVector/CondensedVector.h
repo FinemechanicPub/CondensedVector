@@ -29,6 +29,8 @@ namespace cvn {
 		struct Element{
 			I idx;
 			T value;
+
+			operator T() const { return value; }
 		};
 
 	private:
