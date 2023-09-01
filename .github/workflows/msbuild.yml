@@ -35,10 +35,9 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:OutDir=Tests /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
+    - name: Add vstest.console.exe to PATH
+      uses: darenm/Setup-VSTest
+    
     - name: Run tests
-      uses: microsoft/vstest-action@main
-      with:
-        testAssembly: MicrosoftTests.dll
-        searchFolder: ./MicrosoftTests/Tests/
-        runInParallel: true
+      run: vstest.console.exe /Platform:x64 ./MicrosoftTests/Tests/MicrosoftTests.dll
 
