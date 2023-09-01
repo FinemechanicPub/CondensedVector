@@ -9,6 +9,7 @@
 #include <vector>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace cvn;
 
 namespace MicrosoftTests
 {
