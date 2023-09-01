@@ -5,7 +5,11 @@
 
 name: MSBuild
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 env:
   # Path to the solution file relative to the root of the project.
