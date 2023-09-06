@@ -2,11 +2,13 @@
 #include "CppUnitTest.h"
 
 #include "CondensedVector.h"
+#include "samples.h"
 
-#include <numeric>
-#include <string>
+#include <algorithm>
 #include <iostream>
+#include <numeric>
 #include <sstream>
+#include <string>
 #include <vector>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -81,6 +83,8 @@ namespace MicrosoftTests
 				for (size_t i = 0; i < v.size(); ++i) {
 					Assert::AreEqual(v[i], nv[i], message_for_testcase(L"Wrong MoveToVector result", v).c_str());
 				}
+
+
 			}
 
 		}
@@ -169,6 +173,11 @@ namespace MicrosoftTests
 				CondensedVector<int> cv(v, non_zero);
 				Assert::AreEqual(std::accumulate(v.begin(), v.end(), 0), std::accumulate(cv.begin(), cv.end(), 0), message_for_testcase(std::wstring(L"Error using std::accumulate."), v, v, cv.ToVector(v.size())).c_str());				
 			}
+		}
+
+		TEST_METHOD(Samples) {
+			auto message = L"Error in code samples";
+			Assert::IsFalse(read_me(), message);
 		}
 	};
 }
