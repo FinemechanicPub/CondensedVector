@@ -266,6 +266,9 @@ namespace cvn {
 	template<class T, class I>
 	void CondensedVector<T, I>::MoveToVector(std::vector<T>& v, I length, I origin)
 	{
+		if (!elements.empty() && elements[0].idx < origin) {
+			throw std::out_of_range("Origin must be not less than the first element index");
+		}
 		v.clear();
 		if (elements.size()) v.reserve(std::max(length, MaxIndex().value_or(I())));
 		for (size_t i = 0; i < elements.size(); ++i) {
@@ -290,6 +293,9 @@ namespace cvn {
 	template<class T, class I>
 	std::vector<T> CondensedVector<T, I>::ToVector(I length, I origin)
 	{
+		if (!elements.empty() && elements[0].idx < origin) {
+			throw std::out_of_range("Origin must be not less than the first element index");
+		}
 		std::vector<T> result;
 		result.reserve(std::max(length, MaxIndex().value_or(I())));
 		for (size_t i = 0; i < elements.size(); ++i) {
